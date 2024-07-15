@@ -5,7 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:outlineAmbientShadowColor="#2196F3"
+    android:outlineSpotShadowColor="#3F51B5"
     tools:context=".MainActivity">
+
     <include layout="@layout/content_main" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
