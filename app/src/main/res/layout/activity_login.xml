@@ -1,0 +1,41 @@
+<!-- res/layout/activity_login.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:scaleType="centerCrop"
+    android:padding="16dp">
+
+    <ImageButton
+        android:id="@+id/button_one_player"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="450dp"
+        android:background="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/player1" />
+
+    <ImageButton
+        android:id="@+id/button_two_players"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/button_one_player"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="1dp"
+        android:background="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/player2" />
+
+    <ImageButton
+        android:id="@+id/button_exit"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/button_two_players"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="1dp"
+        android:background="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/exit" />
+
+</RelativeLayout>
