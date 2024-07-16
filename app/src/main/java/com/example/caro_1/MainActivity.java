@@ -18,7 +18,7 @@ import android.widget.Toast;
 import java.util.Random;
 
 public class MainActivity extends Activity {
-    final static int maxN = 15; // Updated board size
+    final static int maxN = 15; // cập nhật bảng size
     private Context context;
     private ImageView[][] ivCell = new ImageView[maxN][maxN];
 
@@ -32,6 +32,7 @@ public class MainActivity extends Activity {
     private boolean firstMove;
     private int xMove, yMove; // x and y axis of cell
     private int turnPlay; // whose turn?
+    private int countX, countO; // Đếm số lượng X và O
 
     private boolean isClicked;
 
@@ -80,16 +81,24 @@ public class MainActivity extends Activity {
         Log.d("turban", "make a move with " + xMove + ";" + yMove + ";" + turnPlay);
         ivCell[xMove][yMove].setImageDrawable(drawCell[turnPlay]);
         valueCell[xMove][yMove] = turnPlay;
+
+        // Cập nhật đếm số X và O
+        if (turnPlay == 1) {
+            countX++;
+        } else {
+            countO++;
+        }
+
         if (noEmptyCell()) {
             Toast.makeText(context, "Draw!!!", Toast.LENGTH_SHORT).show();
             return;
         } else if (CheckWinner()) {
             if (winner_play == 1) {
                 Toast.makeText(context, "Winner is Player 1", Toast.LENGTH_SHORT).show();
-                tvTurn.setText("Player 1 chiến thắng !!!");
+                tvTurn.setText("Player 1 chiến thắng !!!\nSố dấu X: " + countX + "\nSố dấu O: " + countO);
             } else {
                 Toast.makeText(context, "Winner is Player 2", Toast.LENGTH_SHORT).show();
-                tvTurn.setText("Player 2 chiến thắng !!!");
+                tvTurn.setText("Player 2 chiến thắng !!!\nSố dấu X: " + countX + "\nSố dấu O: " + countO);
             }
             return;
         }
@@ -97,6 +106,8 @@ public class MainActivity extends Activity {
         turnPlay = (turnPlay == 1) ? 2 : 1;
         playerTurn();
     }
+
+
 
     private boolean CheckWinner() {
         if (winner_play != 0) return true;
@@ -112,8 +123,14 @@ public class MainActivity extends Activity {
         } else {
             VectorEnd(maxN - 1, maxN - 1 - (xMove - yMove), -1, -1, xMove, yMove);
         }
-        return winner_play != 0;
+        if (winner_play != 0) {
+            tvTurn.setText(String.format("Player %d chiến thắng!!!\nSố dấu X: %d\nSố dấu O: %d", winner_play, countX, countO));
+            return true;
+        }
+        return false;
     }
+
+
 
     private void VectorEnd(int xx, int yy, int vx, int vy, int rx, int ry) {
         if (winner_play != 0) return;
@@ -187,6 +204,8 @@ public class MainActivity extends Activity {
     private void init_game() {
         firstMove = true;
         winner_play = 0;
+        countX = 0; // Đặt lại đếm X
+        countO = 0; // Đặt lại đếm O
         for (int i = 0; i < maxN; i++) {
             for (int j = 0; j < maxN; j++) {
                 ivCell[i][j].setImageDrawable(drawCell[0]);
@@ -194,6 +213,7 @@ public class MainActivity extends Activity {
             }
         }
     }
+
 
     private void loadResources() {
         drawCell[3] = context.getResources().getDrawable(R.drawable.o);
