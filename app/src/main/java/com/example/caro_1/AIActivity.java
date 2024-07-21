@@ -384,6 +384,7 @@ public class AIActivity extends Activity {
         }
     }
 
+
     private float ScreenWidth() {
         Resources resources = context.getResources();//ok
         DisplayMetrics dm = resources.getDisplayMetrics();
