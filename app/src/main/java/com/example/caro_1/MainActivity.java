@@ -107,8 +107,6 @@ public class MainActivity extends Activity {
         playerTurn();
     }
 
-
-
     private boolean CheckWinner() {
         if (winner_play != 0) return true;
         VectorEnd(xMove, 0, 0, 1, xMove, yMove);
@@ -129,8 +127,6 @@ public class MainActivity extends Activity {
         }
         return false;
     }
-
-
 
     private void VectorEnd(int xx, int yy, int vx, int vy, int rx, int ry) {
         if (winner_play != 0) return;
@@ -214,7 +210,6 @@ public class MainActivity extends Activity {
         }
     }
 
-
     private void loadResources() {
         drawCell[3] = context.getResources().getDrawable(R.drawable.o);
         drawCell[0] = null;
@@ -224,9 +219,15 @@ public class MainActivity extends Activity {
 
     @SuppressLint("NewApi")
     private void designBoardGame() {
-        int sizeofCell = Math.round(ScreenWidth() / maxN);
-        LinearLayout.LayoutParams lpRow = new LinearLayout.LayoutParams(sizeofCell * maxN, sizeofCell);
-        LinearLayout.LayoutParams lpCell = new LinearLayout.LayoutParams(sizeofCell, sizeofCell);
+        // Lấy chiều rộng và chiều cao của màn hình
+        float screenWidth = ScreenWidth();
+        float screenHeight = ScreenHeight();
+
+        // Tính kích thước của mỗi ô dựa trên kích thước nhỏ hơn giữa chiều rộng và chiều cao
+        int cellSize = Math.round(Math.min(screenWidth, screenHeight) / maxN);
+
+        LinearLayout.LayoutParams lpRow = new LinearLayout.LayoutParams(cellSize * maxN, cellSize);
+        LinearLayout.LayoutParams lpCell = new LinearLayout.LayoutParams(cellSize, cellSize);
 
         LinearLayout linBoardGame = findViewById(R.id.linBoardGame);
 
@@ -262,4 +263,11 @@ public class MainActivity extends Activity {
         DisplayMetrics dm = resources.getDisplayMetrics();
         return dm.widthPixels;
     }
+
+    private float ScreenHeight() {
+        Resources resources = context.getResources();
+        DisplayMetrics dm = resources.getDisplayMetrics();
+        return dm.heightPixels;
+    }
+
 }
