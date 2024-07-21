@@ -64,7 +64,7 @@ public class AIActivity extends Activity {
         tvTurn = (TextView) findViewById(R.id.tvTurn);
 
         btnPlay.setText("Play Game");
-        tvTurn.setText("Press button Play Game");
+        tvTurn.setText("bấm nút Play Game");
 
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,10 +84,10 @@ public class AIActivity extends Activity {
 
         if (turnPlay == 1) {//player play first
             //inform => make a toast
-            Toast.makeText(context, "Player play first!", Toast.LENGTH_SHORT).show();//dont forget show(); :D
+            Toast.makeText(context, "Player đi trước!", Toast.LENGTH_SHORT).show();//dont forget show(); :D
             playerTurn();
         } else {//bot turn
-            Toast.makeText(context, "Bot play first!", Toast.LENGTH_SHORT).show();//dont forget show(); :D
+            Toast.makeText(context, "Bot đi trước!", Toast.LENGTH_SHORT).show();//dont forget show(); :D
             botTurn();
         }
 
@@ -211,10 +211,10 @@ public class AIActivity extends Activity {
         } else if (CheckWinner()) {
             if (winner_play == 1) {
                 Toast.makeText(context, "Winner is Player", Toast.LENGTH_SHORT).show();//
-                tvTurn.setText("Winner is Player");
+                tvTurn.setText("Người chơi chiến thắng !!!");
             } else {
                 Toast.makeText(context, "Winner is Bot", Toast.LENGTH_SHORT).show();//
-                tvTurn.setText("Winner is Bot");
+                tvTurn.setText("Máy thắng !!! ");
             }
             return;
         }
